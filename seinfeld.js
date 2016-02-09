@@ -46,6 +46,17 @@ app.get('/coolness-chart', function(req, res) {
   });
 });
 
+app.get('/attitude-chart/:type', function(req, res) {
+  var type = req.params.type;
+  console.log(type);
+  var query = "SELECT name FROM attitude WHERE attitude = '" + type + "';";
+
+  connection.query(query, function(err, result) {
+    res.send(result);
+  });
+
+});
+
 app.listen(PORT, function() {
   console.log("Listening at %s", PORT);
 });
